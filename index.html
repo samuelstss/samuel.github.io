@@ -2,179 +2,158 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#17191b">
 <title>Recomeço Financeiro</title>
 
 <style>
 :root {
   --bg: #17191b;
-  --panel: #222528;
-  --panel2: #292d30;
-  --line: #3b4043;
-  --text: #f2f3f1;
-  --muted: #a0a5a5;
+  --panel: #222628;
+  --panel2: #292e30;
+  --line: #3d4445;
+  --text: #f2f3f0;
+  --muted: #a4aaa8;
   --green: #a3e635;
-  --green-dark: #6c9625;
-  --radius: 18px;
+  --radius: 17px;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
 }
 
-button, input {
-  font: inherit;
-}
+button, input { font: inherit; }
+button { cursor: pointer; }
 
-button {
-  cursor: pointer;
-}
-
-/* FUNDO DE PAREDE CINZA SOFISTICADA */
-
-.wall-background {
+.wall {
   position: fixed;
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(ellipse at 15% 10%, rgba(180,185,184,.13), transparent 40%),
-    radial-gradient(ellipse at 85% 75%, rgba(130,140,140,.10), transparent 40%),
-    linear-gradient(115deg, #272a2c 0%, #191b1d 48%, #303335 100%);
+    radial-gradient(ellipse at 12% 15%, #45494a55, transparent 40%),
+    radial-gradient(ellipse at 85% 85%, #555a5830, transparent 45%),
+    linear-gradient(125deg, #292c2e, #17191b 58%, #292c2d);
 }
 
-.wall-background::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: .28;
-  background:
-    repeating-linear-gradient(
-      0deg,
-      transparent 0px,
-      rgba(255,255,255,.025) 1px,
-      transparent 2px,
-      transparent 5px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent 0px,
-      rgba(0,0,0,.06) 1px,
-      transparent 3px,
-      transparent 8px
-    );
-}
-
-.wall-background::after {
+.wall::after {
   content: "";
   position: absolute;
   inset: 0;
   opacity: .25;
   background:
-    linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(255,255,255,.035) 49.8%,
-      rgba(0,0,0,.14) 50%,
-      transparent 50.4%
-    ),
-    linear-gradient(
-      0deg,
-      transparent 0%,
-      transparent 69.8%,
-      rgba(0,0,0,.12) 70%,
-      transparent 70.4%
-    );
+    repeating-linear-gradient(0deg, #ffffff05 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(90deg, #00000009 0 1px, transparent 1px 7px);
 }
 
-.hidden {
-  display: none !important;
-}
+.hidden { display: none !important; }
 
-/* INTRODUÇÃO */
+/* INTRO — PAREDE ARQUITETÔNICA CINZA */
 
 #intro {
   position: fixed;
   inset: 0;
-  z-index: 10;
+  z-index: 20;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  overflow: hidden;
   background:
-    radial-gradient(ellipse at center, rgba(100,110,108,.15), transparent 55%),
-    linear-gradient(135deg, #25282a, #141617 60%, #292c2e);
-  transition: opacity .7s ease, visibility .7s ease;
+    linear-gradient(90deg, #10121330, #101213a8),
+    linear-gradient(180deg, transparent 75%, #11131499 100%),
+    radial-gradient(ellipse at 25% 30%, #b9bfbd35, transparent 45%),
+    linear-gradient(125deg, #555a5b, #333738 44%, #191c1d 100%);
+  transition: opacity .75s ease, visibility .75s ease;
 }
 
 #intro::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    rgba(255,255,255,.018) 1px,
-    transparent 3px,
-    transparent 7px
-  );
+  background:
+    linear-gradient(90deg,
+      transparent 0 17.8%,
+      #11141470 18%,
+      #c4c9c720 18.15%,
+      transparent 18.4% 63%,
+      #080a0a70 63.2%,
+      #c3c8c51c 63.35%,
+      transparent 63.6%),
+    linear-gradient(0deg,
+      transparent 0 77%,
+      #080a0a40 77.2%,
+      #d0d4d21a 77.4%,
+      transparent 77.6%),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 4px,
+      #ffffff08 5px,
+      transparent 6px 9px
+    );
   pointer-events: none;
+}
+
+#intro::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 23%;
+  background: linear-gradient(0deg, #0c0e0fee, transparent);
+  border-top: 1px solid #d5d8d522;
 }
 
 #intro.fade-out {
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
 }
 
 .intro-content {
   position: relative;
-  padding: 24px;
+  z-index: 2;
+  width: min(90%, 500px);
+  text-align: center;
+  padding: 35px 20px;
   animation: appear 1s ease both;
 }
 
 .brand {
-  font-size: clamp(35px, 7vw, 58px);
-  letter-spacing: -2.5px;
+  font-size: clamp(42px, 8vw, 68px);
   font-weight: 650;
+  letter-spacing: -3px;
 }
 
-.brand span {
-  color: var(--green);
-}
+.brand span, .logo span { color: var(--green); }
 
 .intro-subtitle {
-  margin-top: 12px;
-  color: #b0b5b4;
-  font-size: 12px;
+  margin-top: 15px;
+  color: #d0d4d1;
+  font-size: 11px;
   letter-spacing: 3px;
   text-transform: uppercase;
 }
 
 .loading-line {
+  width: 155px;
   height: 2px;
-  width: 170px;
-  margin: 36px auto 0;
-  background: #414648;
+  background: #ffffff35;
+  margin: 35px auto 0;
   overflow: hidden;
 }
 
 .loading-line::after {
   content: "";
   display: block;
-  width: 45%;
+  width: 40%;
   height: 100%;
   background: var(--green);
-  animation: load 1.6s ease-in-out forwards;
+  animation: load 1.5s ease-in-out forwards;
 }
 
 @keyframes load {
@@ -183,84 +162,73 @@ button {
 }
 
 @keyframes appear {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* CONTEÚDO */
+/* ESTRUTURA */
 
 .container {
-  width: min(1060px, 100%);
+  width: min(1080px, 100%);
   margin: auto;
-  padding: 28px 22px 55px;
+  padding: 25px 22px 45px;
 }
 
 header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 16px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid rgba(255,255,255,.12);
-  margin-bottom: 36px;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 22px;
+  margin-bottom: 35px;
+  border-bottom: 1px solid #ffffff18;
 }
 
 .logo {
-  font-size: 22px;
+  font-size: 23px;
   font-weight: 700;
   letter-spacing: -1px;
 }
 
-.logo span {
-  color: var(--green);
-}
-
-.header-label {
-  color: var(--muted);
-  font-size: 12px;
-  letter-spacing: 1px;
+.header-label, .eyebrow {
+  font-size: 10px;
+  letter-spacing: 2px;
   text-transform: uppercase;
 }
+
+.header-label { color: var(--muted); }
 
 .eyebrow {
   color: var(--green);
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
   font-weight: 700;
   margin-bottom: 13px;
 }
 
 h1 {
-  font-size: clamp(30px, 5vw, 46px);
+  font-size: clamp(32px, 5vw, 47px);
   line-height: 1.08;
   letter-spacing: -1.8px;
   font-weight: 650;
 }
 
-h1 em {
-  color: var(--green);
-  font-style: normal;
-}
+h1 em { color: var(--green); font-style: normal; }
 
 .subtitle {
-  color: #b1b6b5;
-  font-size: 15px;
-  line-height: 1.7;
-  max-width: 540px;
+  max-width: 560px;
+  color: #b5bbb8;
+  font-size: 14px;
+  line-height: 1.8;
   margin-top: 15px;
 }
 
-.hero {
-  margin-bottom: 30px;
-}
+.hero { margin-bottom: 30px; }
 
 .panel {
-  background: rgba(32,35,37,.88);
-  border: 1px solid rgba(255,255,255,.09);
+  background: #222628ed;
+  border: 1px solid #ffffff10;
   border-radius: var(--radius);
-  padding: 26px;
-  box-shadow: 0 18px 50px rgba(0,0,0,.12);
+  padding: 25px;
+  box-shadow: 0 18px 45px #00000012;
   backdrop-filter: blur(10px);
 }
 
@@ -273,95 +241,90 @@ h1 em {
 .panel-description {
   color: var(--muted);
   font-size: 13px;
-  line-height: 1.6;
-  margin-bottom: 24px;
+  line-height: 1.7;
+  margin-bottom: 23px;
 }
 
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
-  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
 }
 
 .field label {
   display: block;
+  color: #d0d4d1;
   font-size: 12px;
-  color: #c1c5c4;
-  margin-bottom: 10px;
+  margin-bottom: 9px;
 }
 
 .field input {
   width: 100%;
-  border: 1px solid #414648;
-  border-radius: 11px;
-  background: #191b1d;
+  background: #181b1c;
   color: white;
-  padding: 15px 13px;
+  border: 1px solid #444a4b;
+  border-radius: 10px;
+  padding: 14px 12px;
   outline: none;
-  transition: border .2s;
 }
 
-.field input:focus {
-  border-color: var(--green);
-}
+.field input:focus { border-color: var(--green); }
 
 .field small {
   display: block;
-  color: #858b8b;
-  font-size: 11px;
   margin-top: 8px;
+  color: #89908e;
+  font-size: 11px;
   line-height: 1.5;
 }
 
 .primary-button {
   width: 100%;
-  border: none;
-  border-radius: 11px;
-  padding: 16px 20px;
   margin-top: 23px;
-  color: #161a12;
+  padding: 15px 18px;
+  border: 0;
+  border-radius: 10px;
   background: var(--green);
+  color: #18200f;
   font-weight: 750;
-  transition: transform .2s, background .2s;
+  transition: .2s;
 }
 
 .primary-button:hover {
-  background: #b8f65b;
+  background: #b9f65a;
   transform: translateY(-1px);
 }
 
 .secondary-button {
   background: transparent;
-  border: 1px solid #505658;
-  color: #e6e8e5;
-  border-radius: 10px;
-  padding: 11px 15px;
+  color: #e5e8e4;
+  border: 1px solid #505758;
+  border-radius: 9px;
+  padding: 11px 14px;
   font-size: 12px;
 }
 
-.secondary-button:hover {
-  border-color: var(--green);
-}
+.secondary-button:hover { border-color: var(--green); }
 
 .error {
-  color: #ff9c91;
-  font-size: 13px;
+  color: #ff9d91;
   margin-top: 12px;
+  font-size: 13px;
 }
 
-/* DASHBOARD */
+/* PAINEL FINANCEIRO */
 
 .dashboard-heading {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 15px;
   flex-wrap: wrap;
-  margin-bottom: 23px;
+  gap: 15px;
+  margin-bottom: 22px;
 }
 
 .dashboard-heading h2 {
-  font-size: 26px;
+  font-size: 27px;
   letter-spacing: -1px;
 }
 
@@ -373,69 +336,50 @@ h1 em {
 
 .stats {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
-  margin-bottom: 17px;
+  margin-bottom: 16px;
 }
 
 .stat {
-  padding: 22px;
-  border-radius: 15px;
-  border: 1px solid rgba(255,255,255,.09);
-  background: rgba(34,37,39,.94);
   min-width: 0;
+  padding: 21px;
+  border: 1px solid #ffffff10;
+  border-radius: 14px;
+  background: #222628ed;
 }
 
-.stat-label {
-  color: #aab0ae;
-  font-size: 12px;
-  line-height: 1.5;
-}
+.stat-label { color: #afb6b2; font-size: 12px; }
 
 .stat-value {
+  margin-top: 13px;
   font-size: clamp(19px, 3vw, 27px);
   font-weight: 700;
-  letter-spacing: -1px;
-  margin-top: 14px;
+  letter-spacing: -.8px;
   overflow-wrap: anywhere;
 }
 
-.stat-note {
-  font-size: 11px;
-  color: #aab0ae;
-  margin-top: 10px;
-}
+.stat-note { color: #969e9a; font-size: 11px; margin-top: 9px; }
 
-.green {
-  color: var(--green);
-}
+.green { color: var(--green); }
 
 .dashboard-grid {
   display: grid;
-  grid-template-columns: 1.2fr .8fr;
-  gap: 17px;
-  margin-bottom: 17px;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 16px;
+  margin-bottom: 16px;
 }
 
-.chart-wrap {
-  position: relative;
-  height: 220px;
-  margin-top: 20px;
-}
-
-canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
+.chart-wrap { height: 220px; margin-top: 15px; }
+canvas { width: 100%; height: 100%; display: block; }
 
 .legend {
   display: flex;
-  gap: 15px;
   flex-wrap: wrap;
-  color: #aab0ae;
+  gap: 17px;
+  color: #aeb5b1;
   font-size: 11px;
-  margin-top: 14px;
+  margin-top: 12px;
 }
 
 .legend span::before {
@@ -448,53 +392,47 @@ canvas {
   margin-right: 6px;
 }
 
-.legend span:last-child::before {
-  background: #858b8d;
+.legend span:last-child::before { background: #7c8586; }
+
+.detail-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #b2b9b5;
+  font-size: 12px;
+  margin-top: 15px;
 }
+
+.detail-line strong { color: #f3f4f0; text-align: right; }
 
 .progress-track {
   height: 7px;
-  background: #424749;
+  margin-top: 13px;
+  background: #414748;
   border-radius: 20px;
   overflow: hidden;
-  margin: 16px 0 10px;
 }
 
 .progress-fill {
   height: 100%;
+  width: 0;
   background: var(--green);
   border-radius: 20px;
   transition: width .3s;
 }
 
-.detail-line {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  color: #b2b7b5;
-  font-size: 12px;
-  margin-top: 15px;
-}
-
-.detail-line strong {
-  color: #f3f4f1;
-  text-align: right;
-}
-
 .tip {
-  margin-top: 17px;
-  border-left: 2px solid var(--green);
-  background: rgba(163,230,53,.055);
+  margin-top: 18px;
   padding: 14px;
-  border-radius: 0 9px 9px 0;
-  color: #c2c7c4;
+  border-left: 2px solid var(--green);
+  border-radius: 0 8px 8px 0;
+  background: #a3e6350b;
+  color: #c1c8c3;
   font-size: 12px;
   line-height: 1.7;
 }
 
-.simulator {
-  margin-bottom: 17px;
-}
+.simulator { margin-bottom: 16px; }
 
 .simulator-row {
   display: grid;
@@ -507,14 +445,12 @@ canvas {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  margin-bottom: 14px;
+  color: #c2c8c4;
   font-size: 13px;
-  color: #c0c5c2;
+  margin-bottom: 14px;
 }
 
-.range-label strong {
-  color: var(--green);
-}
+.range-label strong { color: var(--green); }
 
 input[type="range"] {
   width: 100%;
@@ -522,83 +458,49 @@ input[type="range"] {
 }
 
 .sim-result {
-  background: #191b1d;
-  border: 1px solid #3c4242;
-  border-radius: 13px;
-  padding: 19px;
+  background: #191c1d;
+  border: 1px solid #3d4444;
+  border-radius: 12px;
+  padding: 18px;
 }
 
-.sim-result .small-label {
-  color: var(--muted);
-  font-size: 12px;
-}
+.small-label { color: var(--muted); font-size: 12px; }
 
-.sim-result .big-result {
+.big-result {
   font-size: 25px;
   font-weight: 700;
-  margin-top: 9px;
   letter-spacing: -1px;
+  margin-top: 9px;
 }
 
 .sim-result p {
+  color: #a9b0ac;
   font-size: 12px;
-  color: #aab0ae;
-  margin-top: 8px;
   line-height: 1.6;
+  margin-top: 8px;
 }
 
 footer {
   text-align: center;
-  color: #777e7d;
+  color: #858d89;
   font-size: 11px;
   line-height: 1.8;
   padding-top: 26px;
 }
 
-footer strong {
-  color: #b5bbb8;
-  font-weight: 600;
-}
+footer strong { color: #c2c8c3; }
 
 @media (max-width: 720px) {
-  .container {
-    padding: 20px 15px 38px;
-  }
-
-  header {
-    margin-bottom: 29px;
-  }
-
-  .form-grid,
-  .stats {
+  .container { padding: 19px 14px 35px; }
+  header { margin-bottom: 28px; }
+  .header-label { font-size: 8px; letter-spacing: 1px; }
+  .form-grid, .stats, .dashboard-grid, .simulator-row {
     grid-template-columns: 1fr;
   }
-
-  .dashboard-grid,
-  .simulator-row {
-    grid-template-columns: 1fr;
-  }
-
-  .stat {
-    padding: 18px;
-  }
-
-  .stat-value {
-    font-size: 26px;
-  }
-
-  .panel {
-    padding: 20px;
-  }
-
-  .header-label {
-    font-size: 9px;
-    text-align: right;
-  }
-
-  .chart-wrap {
-    height: 190px;
-  }
+  .panel { padding: 19px; }
+  .stat { padding: 18px; }
+  .stat-value { font-size: 25px; }
+  .chart-wrap { height: 190px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -611,9 +513,9 @@ footer strong {
 </head>
 
 <body>
-<div class="wall-background"></div>
+<div class="wall"></div>
 
-<section id="intro">
+<section id="intro" aria-label="Abertura Recomeço">
   <div class="intro-content">
     <div class="brand">recomeço<span>.</span></div>
     <div class="intro-subtitle">Sua vida financeira, sob controle</div>
@@ -629,18 +531,17 @@ footer strong {
 
   <section class="hero">
     <div class="eyebrow">Um novo ponto de partida</div>
-    <h1>Organize hoje.<br><em>Respire amanhã.</em></h1>
+    <h1>Organize hoje.<br><em>Construa amanhã.</em></h1>
     <p class="subtitle">
       Entenda sua situação financeira, organize suas dívidas e descubra
-      caminhos possíveis para recuperar o controle do seu dinheiro.
+      caminhos possíveis para retomar o controle do seu dinheiro.
     </p>
   </section>
 
   <section id="setup" class="panel">
-    <div class="panel-title">Vamos entender sua realidade.</div>
+    <div class="panel-title">Vamos entender sua situação.</div>
     <p class="panel-description">
-      Preencha os valores aproximados. Seus dados ficam salvos neste navegador
-      para você poder continuar de onde parou.
+      Informe valores aproximados para montar seu panorama financeiro.
     </p>
 
     <form id="finance-form">
@@ -656,19 +557,19 @@ footer strong {
           <label for="expenses">Gastos mensais (R$)</label>
           <input id="expenses" type="number" min="0" step="0.01"
             placeholder="Ex.: 1600" required>
-          <small>Moradia, alimentação, transporte e outros gastos.</small>
+          <small>Moradia, alimentação, transporte e outros.</small>
         </div>
 
         <div class="field">
           <label for="debt">Total das dívidas (R$)</label>
           <input id="debt" type="number" min="0" step="0.01"
             placeholder="Ex.: 3000" required>
-          <small>Some as dívidas que ainda precisa pagar.</small>
+          <small>O saldo total que você ainda precisa pagar.</small>
         </div>
       </div>
 
       <button class="primary-button" type="submit">
-        Montar meu planejamento →
+        Ver meu panorama financeiro →
       </button>
       <p id="form-error" class="error hidden"></p>
     </form>
@@ -679,7 +580,7 @@ footer strong {
       <div>
         <div class="eyebrow">Seu panorama</div>
         <h2>Seu dinheiro, com clareza.</h2>
-        <p id="welcome-text">Aqui está o retrato da sua situação atual.</p>
+        <p>Aqui está o retrato da sua situação atual.</p>
       </div>
       <button id="edit-button" class="secondary-button" type="button">
         Editar meus dados
@@ -696,7 +597,7 @@ footer strong {
       <article class="stat">
         <div class="stat-label">Dinheiro restante</div>
         <div id="stat-left" class="stat-value green">R$ 0,00</div>
-        <div id="left-note" class="stat-note">Depois dos gastos mensais</div>
+        <div id="left-note" class="stat-note">Após os gastos mensais</div>
       </article>
 
       <article class="stat">
@@ -708,12 +609,12 @@ footer strong {
 
     <div class="dashboard-grid">
       <section class="panel">
-        <div class="panel-title">Uma visão do seu dinheiro</div>
+        <div class="panel-title">Sua distribuição financeira</div>
         <p class="panel-description">
-          Como sua renda está distribuída entre gastos e dinheiro restante.
+          Compare seus gastos com o dinheiro que sobra.
         </p>
         <div class="chart-wrap">
-          <canvas id="finance-chart" aria-label="Gráfico de renda e gastos"></canvas>
+          <canvas id="finance-chart" aria-label="Gráfico de gastos e saldo"></canvas>
         </div>
         <div class="legend">
           <span>Dinheiro restante</span>
@@ -724,7 +625,7 @@ footer strong {
       <section class="panel">
         <div class="panel-title">Seu ponto de partida</div>
         <p class="panel-description">
-          Um resumo para ajudar você a decidir o próximo passo.
+          Uma visão simples para ajudar você a decidir o próximo passo.
         </p>
 
         <div class="detail-line">
@@ -732,7 +633,7 @@ footer strong {
           <strong id="expense-percent">0%</strong>
         </div>
         <div class="progress-track">
-          <div id="expense-progress" class="progress-fill" style="width:0%"></div>
+          <div id="expense-progress" class="progress-fill"></div>
         </div>
 
         <div class="detail-line">
@@ -740,8 +641,8 @@ footer strong {
           <strong id="available-value">R$ 0,00</strong>
         </div>
         <div class="detail-line">
-          <span>Dívidas em relação à renda</span>
-          <strong id="debt-ratio">0 meses</strong>
+          <span>Prazo estimado para quitar</span>
+          <strong id="debt-ratio">—</strong>
         </div>
 
         <div id="personal-tip" class="tip"></div>
@@ -749,10 +650,10 @@ footer strong {
     </div>
 
     <section class="panel simulator">
-      <div class="panel-title">Simule um pagamento extra</div>
+      <div class="panel-title">Simule seu pagamento</div>
       <p class="panel-description">
-        Veja quanto tempo levaria para pagar o saldo informado, considerando
-        um pagamento mensal fixo e sem adicionar novas dívidas.
+        Ajuste o valor mensal e veja uma estimativa do prazo para quitar
+        suas dívidas, sem considerar juros ou novas dívidas.
       </p>
 
       <div class="simulator-row">
@@ -762,9 +663,9 @@ footer strong {
             <strong id="payment-label">R$ 0,00</strong>
           </div>
           <input id="payment-range" type="range" min="0" max="1000"
-            step="25" value="100" aria-label="Pagamento mensal da dívida">
+            step="25" value="100" aria-label="Pagamento mensal">
           <div class="detail-line">
-            <span>Valor disponível estimado</span>
+            <span>Sobra estimada no orçamento</span>
             <strong id="available-for-sim">R$ 0,00</strong>
           </div>
         </div>
@@ -773,7 +674,7 @@ footer strong {
           <div class="small-label">Tempo estimado para quitar</div>
           <div id="months-result" class="big-result">—</div>
           <p id="sim-description">
-            Ajuste o pagamento mensal para simular um cenário.
+            Ajuste o pagamento mensal para simular.
           </p>
         </div>
       </div>
@@ -781,34 +682,29 @@ footer strong {
 
     <section class="panel">
       <div class="panel-title">Seu próximo passo</div>
-      <p id="next-step" class="panel-description" style="margin-bottom:0">
-        Pequenas decisões consistentes podem ajudar você a retomar o controle.
-      </p>
+      <p id="next-step" class="panel-description" style="margin-bottom:0"></p>
       <button id="reset-button" class="secondary-button" type="button"
         style="margin-top:18px">
-        Recomeçar com novos dados
+        Apagar dados e recomeçar
       </button>
     </section>
   </section>
 
   <footer>
     <strong>recomeço.</strong><br>
-    Um passo de cada vez. Uma decisão de cada vez.<br>
-    As projeções são estimativas e não incluem juros, multas ou mudanças
-    futuras nos seus gastos.
+    Disciplina hoje. Liberdade amanhã.<br>
+    As projeções são estimativas e não consideram juros, multas ou novas dívidas.
   </footer>
 </main>
 
 <script>
-const $ = (id) => document.getElementById(id);
-
+const $ = id => document.getElementById(id);
 let finances = null;
 
-const money = (value) =>
-  new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL"
-  }).format(Number.isFinite(value) ? value : 0);
+const money = value => new Intl.NumberFormat("pt-BR", {
+  style: "currency",
+  currency: "BRL"
+}).format(Number.isFinite(value) ? value : 0);
 
 function readForm() {
   return {
@@ -821,7 +717,7 @@ function readForm() {
 function saveData() {
   try {
     localStorage.setItem("recomeco-financeiro", JSON.stringify(finances));
-  } catch (error) {
+  } catch (e) {
     console.warn("Não foi possível salvar os dados neste navegador.");
   }
 }
@@ -832,21 +728,23 @@ function loadData() {
     if (!saved) return null;
 
     const data = JSON.parse(saved);
-
-    if (
-      !data ||
-      !Number.isFinite(data.income) ||
-      !Number.isFinite(data.expenses) ||
-      !Number.isFinite(data.debt) ||
-      data.income < 0 ||
-      data.expenses < 0 ||
-      data.debt < 0
-    ) return null;
-
+    if (!data ||
+        !Number.isFinite(data.income) ||
+        !Number.isFinite(data.expenses) ||
+        !Number.isFinite(data.debt) ||
+        data.income < 0 || data.expenses < 0 || data.debt < 0) {
+      return null;
+    }
     return data;
-  } catch (error) {
+  } catch (e) {
     return null;
   }
+}
+
+function getMonths(debt, payment) {
+  if (debt <= 0) return 0;
+  if (payment <= 0) return null;
+  return Math.ceil(debt / payment);
 }
 
 function showError(message) {
@@ -878,74 +776,66 @@ function showDashboard() {
   renderDashboard();
 }
 
-function getMonths(debt, payment) {
-  if (debt <= 0) return 0;
-  if (payment <= 0) return null;
-  return Math.ceil(debt / payment);
-}
-
 function renderDashboard() {
   if (!finances) return;
 
   const { income, expenses, debt } = finances;
   const remaining = income - expenses;
+  const positiveRemaining = Math.max(0, remaining);
 
   $("stat-income").textContent = money(income);
   $("stat-left").textContent = money(remaining);
   $("stat-debt").textContent = money(debt);
   $("available-value").textContent = money(remaining);
-  $("available-for-sim").textContent = money(Math.max(0, remaining));
+  $("available-for-sim").textContent = money(positiveRemaining);
 
-  $("stat-left").classList.toggle("green", remaining >= 0);
-  $("stat-left").style.color = remaining < 0 ? "#ff9c91" : "";
-
+  $("stat-left").style.color = remaining < 0 ? "#ff9d91" : "";
   $("left-note").textContent = remaining < 0
-    ? "Seus gastos superam sua renda"
-    : "Depois dos gastos mensais";
+    ? "Os gastos superam a renda"
+    : "Após os gastos mensais";
 
   const percent = income > 0
-    ? Math.round((expenses / income) * 100)
+    ? Math.round(expenses / income * 100)
     : (expenses > 0 ? 100 : 0);
 
   $("expense-percent").textContent = percent + "%";
   $("expense-progress").style.width = Math.min(100, percent) + "%";
 
-  const debtMonths = getMonths(debt, Math.max(0, remaining));
+  const months = getMonths(debt, positiveRemaining);
   $("debt-ratio").textContent = debt <= 0
     ? "Sem dívida informada"
-    : debtMonths === null
+    : months === null
       ? "Sem sobra mensal"
-      : debtMonths + (debtMonths === 1 ? " mês" : " meses");
+      : months + (months === 1 ? " mês" : " meses");
 
   if (debt <= 0) {
     $("personal-tip").textContent =
-      "Você não informou dívidas pendentes. Uma reserva de emergência pode ser um próximo objetivo.";
+      "Você não informou dívidas pendentes. Uma reserva de emergência pode ser seu próximo objetivo.";
     $("next-step").textContent =
       "Considere criar uma reserva financeira para lidar com imprevistos sem precisar recorrer a novas dívidas.";
   } else if (remaining <= 0) {
     $("personal-tip").textContent =
-      "Sua renda está totalmente comprometida ou seus gastos são maiores que ela. Comece revisando despesas essenciais e negociando as dívidas.";
+      "Sua renda está totalmente comprometida ou os gastos superam o que entra. Revise despesas e procure opções de negociação.";
     $("next-step").textContent =
-      "Antes de definir parcelas, tente encontrar espaço no orçamento e converse com os credores sobre opções de renegociação que caibam na sua realidade.";
+      "Priorize as despesas essenciais. Procure os credores para avaliar propostas que caibam no orçamento, sem comprometer alimentação, moradia ou transporte.";
   } else if (percent >= 80) {
     $("personal-tip").textContent =
-      "Boa parte da sua renda já está comprometida. Preserve o dinheiro necessário para despesas essenciais antes de assumir novos pagamentos.";
+      "Grande parte da renda já está comprometida. Preserve dinheiro para despesas essenciais e imprevistos antes de assumir parcelas.";
     $("next-step").textContent =
-      "Revise seus gastos e compare propostas de negociação. Não aceite uma parcela que comprometa alimentação, moradia ou transporte.";
+      "Revise os gastos e compare propostas de negociação. Escolha parcelas que consiga pagar com regularidade.";
   } else {
     $("personal-tip").textContent =
-      "Existe uma sobra mensal estimada. Você pode avaliar quanto dela consegue direcionar às dívidas sem ficar sem dinheiro para imprevistos.";
+      "Existe uma sobra mensal estimada. Avalie quanto consegue destinar às dívidas sem ficar sem dinheiro para imprevistos.";
     $("next-step").textContent =
-      "Liste as dívidas, taxas de juros e vencimentos. Compare as opções de negociação e priorize um plano que você consiga manter.";
+      "Liste as dívidas, taxas e vencimentos. Compare opções de negociação e priorize um plano que caiba na sua realidade.";
   }
 
   const range = $("payment-range");
-  const suggested = Math.max(0, remaining);
+  const suggested = positiveRemaining;
   const maxRange = Math.max(500, Math.ceil(suggested / 100) * 100);
-
   range.max = maxRange;
-  range.value = Math.min(Number(range.value), maxRange);
 
+  if (Number(range.value) > maxRange) range.value = maxRange;
   if (suggested > 0 && Number(range.value) === 0) {
     range.value = Math.min(suggested, maxRange);
   }
@@ -958,25 +848,26 @@ function renderSimulation() {
   if (!finances) return;
 
   const payment = Number($("payment-range").value);
-  const { debt } = finances;
+  const debt = finances.debt;
   const months = getMonths(debt, payment);
 
   $("payment-label").textContent = money(payment);
+  $("available-for-sim").textContent =
+    money(Math.max(0, finances.income - finances.expenses));
 
   if (debt <= 0) {
     $("months-result").textContent = "Tudo certo";
     $("sim-description").textContent =
-      "Você não informou saldo de dívida pendente.";
+      "Você não informou dívidas pendentes.";
   } else if (payment <= 0) {
     $("months-result").textContent = "Sem previsão";
     $("sim-description").textContent =
-      "Defina um pagamento mensal maior que zero para visualizar a estimativa.";
+      "Defina um pagamento mensal maior que zero.";
   } else {
     $("months-result").textContent =
       months + (months === 1 ? " mês" : " meses");
-
     $("sim-description").textContent =
-      "Estimativa sem juros, novas dívidas ou alteração no pagamento mensal.";
+      "Estimativa sem juros, multas ou novas dívidas. O valor precisa caber no seu orçamento.";
   }
 }
 
@@ -985,7 +876,7 @@ function drawChart() {
   if (!canvas || !finances) return;
 
   const rect = canvas.getBoundingClientRect();
-  if (rect.width === 0 || rect.height === 0) return;
+  if (!rect.width || !rect.height) return;
 
   const ratio = window.devicePixelRatio || 1;
   canvas.width = Math.round(rect.width * ratio);
@@ -1001,20 +892,18 @@ function drawChart() {
   const { income, expenses } = finances;
   const remaining = Math.max(0, income - expenses);
   const total = Math.max(income, expenses, 1);
+  const top = 18;
+  const bottom = height - 30;
+  const chartHeight = bottom - top;
+  const barWidth = Math.min(62, width * .19);
+  const gap = Math.min(38, width * .12);
+  const start = (width - (barWidth * 2 + gap)) / 2;
 
-  const pad = { top: 16, right: 8, bottom: 30, left: 8 };
-  const chartHeight = height - pad.top - pad.bottom;
-  const baseline = height - pad.bottom;
-  const barWidth = Math.min(66, width * .19);
-  const gap = Math.min(42, width * .13);
-  const totalWidth = barWidth * 2 + gap;
-  const startX = (width - totalWidth) / 2;
-
-  ctx.strokeStyle = "rgba(255,255,255,.09)";
+  ctx.strokeStyle = "#ffffff12";
   ctx.lineWidth = 1;
 
   for (let i = 0; i < 4; i++) {
-    const y = pad.top + (chartHeight / 3) * i;
+    const y = top + chartHeight / 3 * i;
     ctx.beginPath();
     ctx.moveTo(0, y);
     ctx.lineTo(width, y);
@@ -1022,63 +911,45 @@ function drawChart() {
   }
 
   const bars = [
-    {
-      x: startX,
-      value: remaining,
-      color: "#a3e635",
-      label: "Restante"
-    },
-    {
-      x: startX + barWidth + gap,
-      value: expenses,
-      color: "#777f81",
-      label: "Gastos"
-    }
+    { x: start, value: remaining, color: "#a3e635", label: "Restante" },
+    { x: start + barWidth + gap, value: expenses, color: "#7b8586", label: "Gastos" }
   ];
 
-  bars.forEach((bar) => {
-    const barHeight = Math.max(2, (bar.value / total) * chartHeight);
-    const y = baseline - barHeight;
+  bars.forEach(bar => {
+    const barHeight = Math.max(2, bar.value / total * chartHeight);
+    const y = bottom - barHeight;
 
     ctx.fillStyle = bar.color;
     ctx.beginPath();
-    ctx.roundRect(bar.x, y, barWidth, barHeight, [5, 5, 0, 0]);
+    if (ctx.roundRect) {
+      ctx.roundRect(bar.x, y, barWidth, barHeight, [5, 5, 0, 0]);
+    } else {
+      ctx.rect(bar.x, y, barWidth, barHeight);
+    }
     ctx.fill();
 
-    ctx.fillStyle = "#e7eae6";
-    ctx.font = "11px sans-serif";
     ctx.textAlign = "center";
+    ctx.font = "11px sans-serif";
+    ctx.fillStyle = "#e6eae6";
 
-    const valueLabel = bar.value >= 100000
-      ? "R$ " + (bar.value / 1000).toFixed(0) + " mil"
-      : money(bar.value);
+    let label = money(bar.value);
+    if (bar.value >= 100000) label = "R$ " + (bar.value / 1000).toFixed(0) + " mil";
 
-    ctx.fillText(
-      valueLabel,
-      bar.x + barWidth / 2,
-      Math.max(12, y - 7)
-    );
-
-    ctx.fillStyle = "#aab0ae";
+    ctx.fillText(label, bar.x + barWidth / 2, Math.max(12, y - 7));
+    ctx.fillStyle = "#aeb5b1";
     ctx.fillText(bar.label, bar.x + barWidth / 2, height - 8);
   });
 }
 
-$("finance-form").addEventListener("submit", (event) => {
+$("finance-form").addEventListener("submit", event => {
   event.preventDefault();
   hideError();
 
   const data = readForm();
 
-  if (
-    !Number.isFinite(data.income) ||
-    !Number.isFinite(data.expenses) ||
-    !Number.isFinite(data.debt) ||
-    data.income < 0 ||
-    data.expenses < 0 ||
-    data.debt < 0
-  ) {
-    showError("Confira os valores. Use números iguais ou maiores que zero.");
+  if (!Object.values(data).every(Number.isFinite) ||
+      data.income < 0 || data.expenses < 0 || data.debt < 0) {
+    showError("Confira os valores informados. Use números iguais ou maiores que zero.");
     return;
   }
 
@@ -1089,26 +960,23 @@ $("finance-form").addEventListener("submit", (event) => {
 });
 
 $("edit-button").addEventListener("click", showSetup);
+$("payment-range").addEventListener("input", renderSimulation);
 
 $("reset-button").addEventListener("click", () => {
-  const confirmed = window.confirm(
-    "Deseja apagar os dados salvos neste navegador e começar de novo?"
-  );
-
-  if (!confirmed) return;
+  if (!window.confirm("Deseja apagar os dados salvos neste navegador e recomeçar?")) {
+    return;
+  }
 
   finances = null;
 
   try {
     localStorage.removeItem("recomeco-financeiro");
-  } catch (error) {}
+  } catch (e) {}
 
   $("finance-form").reset();
   hideError();
   showSetup();
 });
-
-$("payment-range").addEventListener("input", renderSimulation);
 
 window.addEventListener("resize", () => {
   if (finances && !$("dashboard").classList.contains("hidden")) {
@@ -1117,13 +985,12 @@ window.addEventListener("resize", () => {
 });
 
 window.addEventListener("DOMContentLoaded", () => {
-  const saved = loadData();
+  finances = loadData();
 
-  if (saved) {
-    finances = saved;
-    $("income").value = saved.income;
-    $("expenses").value = saved.expenses;
-    $("debt").value = saved.debt;
+  if (finances) {
+    $("income").value = finances.income;
+    $("expenses").value = finances.expenses;
+    $("debt").value = finances.debt;
   }
 
   setTimeout(() => {
@@ -1132,11 +999,9 @@ window.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       $("intro").style.display = "none";
 
-      if (finances) {
-        showDashboard();
-      }
-    }, 750);
-  }, 1700);
+      if (finances) showDashboard();
+    }, 800);
+  }, 1800);
 });
 </script>
 </body>
